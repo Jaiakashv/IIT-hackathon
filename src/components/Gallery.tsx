@@ -11,23 +11,23 @@ const Gallery = () => {
       alt: "Aura Lifestyle 1"
     },
     {
-      src: "/images/aura2.jpg",
+      src: "/adven.jpg",
       alt: "Aura Lifestyle 2"
     },
     {
-      src: "/images/aura3.jpg",
+      src: "/adven.jpg",
       alt: "Aura Lifestyle 3"
     },
     {
-      src: "/images/aura4.jpg",
+      src: "/adven.jpg",
       alt: "Aura Lifestyle 4"
     },
     {
-      src: "/images/aura5.jpg",
+      src: "/adven.jpg",
       alt: "Aura Lifestyle 5"
     },
     {
-      src: "/images/aura6.jpg",
+      src: "/adven.jpg",
       alt: "Aura Lifestyle 6"
     }
   ];
