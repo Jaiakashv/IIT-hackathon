@@ -1,0 +1,19 @@
+.ripple-cursor {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: rgba(139, 90, 43, 0.3);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 9999;
+  transition: width 0.2s ease-out, height 0.2s ease-out, background-color 0.2s ease-out;
+}
+
+.ripple-cursor.ripple {
+  width: 100px;
+  height: 100px;
+  background-color: rgba(139, 90, 43, 0);
+  border: 2px solid rgba(139, 90, 43, 0.5);
+  transition: width 0.5s ease-out, height 0.5s ease-out, background-color 0.5s ease-out;
+}
