@@ -1,10 +1,19 @@
+import React, { useEffect } from 'react';
 
-import React, { useState } from 'react';
-import { X } from 'lucide-react';
+const imagePairs = [
+  ['https://picsum.photos/200', 'https://picsum.photos/201'],
+  ['https://picsum.photos/202', 'https://picsum.photos/203'],
+  ['https://picsum.photos/204', 'https://picsum.photos/205'],
+  ['https://picsum.photos/206', 'https://picsum.photos/207'],
+  ['https://picsum.photos/208', 'https://picsum.photos/209'],
+  ['https://picsum.photos/210', 'https://picsum.photos/211']
+];
 
-const Gallery = () => {
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+const CustomerGrid: React.FC = () => {
+  useEffect(() => {
+    const wrappers = document.querySelectorAll('.logo-wrapper');
 
+<<<<<<< HEAD
   const images = [
     {
       src: "/adven.jpg",
@@ -31,61 +40,61 @@ const Gallery = () => {
       alt: "Aura Lifestyle 6"
     }
   ];
+=======
+    wrappers.forEach((wrapper) => {
+      const images = wrapper.querySelectorAll('img');
+      let current = 0;
+
+      if (images.length === 0) return;
+
+      images[current].classList.add('opacity-100');
+
+      setInterval(() => {
+        images[current].classList.remove('opacity-100');
+        setTimeout(() => {
+          current = (current + 1) % images.length;
+          images[current].classList.add('opacity-100');
+        }, 1000);
+      }, 3000);
+    });
+  }, []);
+>>>>>>> 1363026 ('updated')
 
   return (
-    <section id="gallery" className="py-20 bg-gray-50 dark:bg-gray-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-            Lifestyle Gallery
-          </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300">
-            Experience the Aura lifestyle through our community
-          </p>
-        </div>
+    <div className="bg-black p-12 text-center rounded-3xl border-4 border-white shadow-[0_15px_30px_rgba(0,0,0,0.4)] min-w-[60vw] mx-auto">
+      <h2 className="text-white text-4xl mb-6 font-bold">Our Customers</h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {images.map((image, index) => (
-            <div 
-              key={index}
-              className="group relative overflow-hidden rounded-xl cursor-pointer transform transition-all duration-300 hover:scale-105"
-              onClick={() => setSelectedImage(image.src)}
-            >
+      {/* Container that will hold both grid and overlay */}
+      <div className="relative group grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-[1200px] mx-auto rounded-lg overflow-hidden">
+        {/* Customer logo wrappers */}
+        {imagePairs.map((pair, index) => (
+          <div
+            key={index}
+            className="logo-wrapper relative w-full pb-[75%] flex justify-center items-center rounded-lg shadow-md overflow-hidden"
+          >
+            {pair.map((src, idx) => (
               <img
-                src={image.src}
-                alt={image.alt}
-                className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110"
+                key={idx}
+                src={src}
+                alt={`Customer Logo ${index * 2 + idx + 1}`}
+                className="absolute top-0 left-0 w-full h-full object-contain p-4 opacity-0 transition-opacity duration-1000 invert"
               />
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-center justify-center">
-                <div className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-lg font-semibold">
-                  View Full Size
-                </div>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
+        ))}
+
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none group-hover:pointer-events-auto rounded-lg z-10">
+          <a
+            href="#"
+            className="text-white px-6 py-3 border-2 border-white rounded-md text-lg hover:bg-white hover:bg-opacity-10 hover:border-blue-500 transition-all duration-300 z-20"
+          >
+            Meet Our Customers
+          </a>
         </div>
       </div>
-
-      {/* Modal */}
-      {selectedImage && (
-        <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4">
-          <div className="relative max-w-4xl max-h-full">
-            <button
-              onClick={() => setSelectedImage(null)}
-              className="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors duration-200"
-            >
-              <X size={32} />
-            </button>
-            <img
-              src={selectedImage}
-              alt="Gallery Image"
-              className="max-w-full max-h-full object-contain rounded-lg"
-            />
-          </div>
-        </div>
-      )}
-    </section>
+    </div>
   );
 };
 
-export default Gallery;
+export default CustomerGrid;
